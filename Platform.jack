@@ -1,0 +1,41 @@
+class Platform {
+    field int tlx;
+    field int tly;
+    field int brx;
+    field int bry;
+    field int speed;
+
+    constructor Platform new() {
+        let speed = 1;
+        do reset();
+        
+        return this;
+    }
+    method void dispose() {
+        do Memory.deAlloc(this);
+		return;
+    }
+    method void update() {
+        let tlx = tlx - speed;
+        let brx = brx - speed;
+
+        if ((tlx < 32) & (brx > -2)) {
+            do Graphics.movePlatformToLeft(tlx, tly, brx, bry);
+        }
+
+        if (brx < -1) {         // reset if platform out of screen
+            do reset();
+        }
+
+        return;
+    }
+    method void reset() {
+        let tly = LCGRandom.randRange(0, 120);
+        let tlx = LCGRandom.randRange(32, 64);
+        let brx = LCGRandom.randRange(tlx + 10, tlx + 40);
+        let bry = tly + 3;
+
+        return;
+    }
+
+}

@@ -1,0 +1,21 @@
+class Main {
+	function void main() {
+        
+        
+        var Platform pl, pl2;
+        do LCGRandom.setSeed(47);
+        let pl = Platform.new();
+        let pl2 = Platform.new();
+
+        while (true) {
+            do pl.update();
+            do pl2.update();
+            do Sys.wait(18);
+        }
+
+        // do Output.moveCursor(6, 10);
+		// do Output.printInt(LCGRandom.randRange(7, 11));
+
+        return;
+	}
+}

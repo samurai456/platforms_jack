@@ -1,0 +1,32 @@
+class LCGRandom {
+    static int seed;
+    static int multiplier;
+    static int incrementer;
+    static int modulus;
+
+    function void setSeed(int newSeed) {
+        let seed = newSeed;
+        let multiplier = 17;
+        let incrementer = 12;
+        let modulus = 32;
+
+        return;
+    }
+
+    function int rand() {
+        var int a;
+        let a = (multiplier * seed) + incrementer;
+        let seed = LCGRandom.mod(a, modulus);
+
+        return seed;
+    }
+    function int randRange(int low, int high) {
+       var int scale;
+       let scale = (LCGRandom.rand() * 10) / modulus;
+       return (((high - low + 1) * scale) / 10) + low;
+    }
+
+    function void mod(int a, int b) {
+        return a - ((a / b) * b);
+    }
+}
