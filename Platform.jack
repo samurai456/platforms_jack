@@ -3,10 +3,15 @@ class Platform {
     field int tly;
     field int brx;
     field int bry;
+    field int yHigh;
+    field int yLow;
     field int speed;
 
-    constructor Platform new() {
+    constructor Platform new(int low, int high) {
         let speed = 1;
+        let yLow = low;
+        let yHigh = high;
+
         do reset();
         
         return this;
@@ -30,7 +35,7 @@ class Platform {
         return;
     }
     method void reset() {
-        let tly = LCGRandom.randRange(0, 120);
+        let tly = LCGRandom.randRange(yLow, yHigh);
         let tlx = LCGRandom.randRange(32, 64);
         let brx = LCGRandom.randRange(tlx + 10, tlx + 40);
         let bry = tly + 3;
