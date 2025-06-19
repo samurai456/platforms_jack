@@ -7,7 +7,7 @@ class Platform {
     field int yLow;
     field int speed;
 
-    constructor Platform new(int low, int high) {
+    constructor Platform new(int low, int high) {       // May be we can name arguments xLow and xHigh without conflicting with instance fields, but i'm not sure.
         let speed = 1;
         let yLow = low;
         let yHigh = high;
