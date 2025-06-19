@@ -23,6 +23,7 @@ class LCGRandom {
     function int randRange(int low, int high) {
        var int scale;
        let scale = (LCGRandom.rand() * 10) / modulus;
+
        return (((high - low + 1) * scale) / 10) + low;
     }
 

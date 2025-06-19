@@ -1,4 +1,6 @@
 class Platform {
+    static int initialX;
+
     field int tlx;
     field int tly;
     field int brx;
@@ -36,11 +38,31 @@ class Platform {
     }
     method void reset() {
         let tly = LCGRandom.randRange(yLow, yHigh);
-        let tlx = LCGRandom.randRange(32, 64);
+        let tlx = initialX;
         let brx = LCGRandom.randRange(tlx + 10, tlx + 40);
         let bry = tly + 3;
 
         return;
     }
+    method int getBrx() {
+        return brx;
+    }
+    function void setInitialX(int initial) {
+        /*Set initial tlx for next platform*/
+        let initialX = initial;
+        return;
+    }
+    function int getHighestBrx(Platform pl0, Platform pl1, Platform pl2) {
+        var int highestBrx;
 
+        let highestBrx = pl0.getBrx();
+        if (pl1.getBrx() > highestBrx) {
+            let highestBrx = pl1.getBrx();
+        }
+        if (pl2.getBrx() > highestBrx) {
+            let highestBrx = pl2.getBrx();
+        }
+
+        return highestBrx;
+    }
 }
