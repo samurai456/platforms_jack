@@ -1,14 +1,13 @@
 class Main {
 	function void main() {
         
-        
-        var Platform pl, pl2;
+        var Platform pl1, pl2;
         do LCGRandom.setSeed(47);
-        let pl = Platform.new();
+        let pl1 = Platform.new();
         let pl2 = Platform.new();
 
         while (true) {
-            do pl.update();
+            do pl1.update();
             do pl2.update();
             do Sys.wait(18);
         }

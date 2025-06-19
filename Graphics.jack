@@ -3,7 +3,6 @@ class Graphics {
         /* Draws leftmost blocks and wipes brx+1 located blocks */
         var int screenMemAddr, y, location;
         let screenMemAddr = 16384;      // First 16 pixels of screen
-    
 
         if ((tlx > -1) & (tlx < 32)) {        // make leftmost blocs black
             let y = tly;                    
