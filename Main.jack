@@ -3,8 +3,8 @@ class Main {
         
         var Platform pl1, pl2;
         do LCGRandom.setSeed(47);
-        let pl1 = Platform.new();
-        let pl2 = Platform.new();
+        let pl1 = Platform.new(10, 30);
+        let pl2 = Platform.new(40, 70);
 
         while (true) {
             do pl1.update();
