@@ -1,7 +1,0 @@
-class PlatformsGame {
-    constructor PlatformsGame new() {
-        
-        
-        return this;
-    }
-}
