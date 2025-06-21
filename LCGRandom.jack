@@ -12,7 +12,6 @@ class LCGRandom {
 
         return;
     }
-
     function int rand() {
         var int a;
         let a = (multiplier * seed) + incrementer;
@@ -25,7 +24,6 @@ class LCGRandom {
        let scale = (LCGRandom.rand() * 10) / modulus;
        return (((high - low + 1) * scale) / 10) + low;
     }
-
     function void mod(int a, int b) {
         return a - ((a / b) * b);
     }
