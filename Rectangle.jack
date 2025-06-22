@@ -2,7 +2,7 @@ class Rectangle {
     field boolean gravity;
     field boolean move;
     field int speed;
-    
+
     field int tlx;
     field int tly;
     field int brx;
@@ -18,7 +18,7 @@ class Rectangle {
     }
     method void dispose() {
         do Memory.deAlloc(this);
-		return;
+        return;
     }
     method void move() {
         let move = true;
