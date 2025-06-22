@@ -36,11 +36,11 @@ class Rectangle {
         if ((pl.getTlx() < (brx + 1)) & 
                 (pl.getBrx() > (tlx - 1))) {
             if (gravity) {
-                if (pl.getBry() = (tly - 1)) {
+                if (pl.getTly() = (bry + 1)) {
                     return true;
                 }
             } else {
-                if (pl.getTly() = (bry + 1)) {
+                if (pl.getBry() = (tly - 1)) {
                     return true;
                 }
             }

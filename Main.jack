@@ -5,7 +5,7 @@ class Main {
         var Platform pl0, pl1, pl2;
         do LCGRandom.setSeed(47);
 
-        let rect = Rectangle.new(3, 200, 6, 220);
+        let rect = Rectangle.new(3, 200, 4, 231);
         do rect.move();
 
         do Platform.setInitialX(45);
@@ -21,11 +21,20 @@ class Main {
             do pl0.update();
             do pl1.update();
             do pl2.update();
+
             do Platform.setInitialX(Platform.getHighestBrx(pl0, pl1, pl2));
-            
+
+            if (rect.platformTouch(pl0) | 
+                    rect.platformTouch(pl1) | 
+                    rect.platformTouch(pl2)) {
+                do rect.stopMove();
+            } else {
+                do rect.move();
+            }
+
             do rect.update();
 
-            do Sys.wait(18);
+            do Sys.wait(5);
         }
 
         // do Output.moveCursor(6, 10);
