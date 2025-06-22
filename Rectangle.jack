@@ -15,6 +15,8 @@ class Rectangle {
         let bry = bry0;
         let move = false;
         let gravity = false;
+
+        return this;
     }
     method void dispose() {
         do Memory.deAlloc(this);
