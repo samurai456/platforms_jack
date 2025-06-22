@@ -13,8 +13,10 @@ class Rectangle {
         let tly = tly0;
         let brx = brx0;
         let bry = bry0;
+
         let move = false;
         let gravity = false;
+        let speed = 1;
 
         return this;
     }
@@ -49,13 +51,13 @@ class Rectangle {
     method void update() {
         if (move) {
             if (gravity) {
-                let tly = tly + 1;
-                let bry = bry + 1;
+                let tly = tly + speed;
+                let bry = bry + speed;
 
                 do Graphics.moveRectangleDown(tlx, tly, brx, bry);
             } else {
-                let tly = tly - 1;
-                let bry = bry - 1;
+                let tly = tly - speed;
+                let bry = bry - speed;
 
                 do Graphics.moveRectangleUp(tlx, tly, brx, bry);
             }
