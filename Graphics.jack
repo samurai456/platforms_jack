@@ -62,7 +62,7 @@ class Graphics {
         var int screenMemAddr, x, location;
         let screenMemAddr = 16384;          // First 16 pixels of screen
 
-        if (bry < 32) {                     // Draw botommost pixels of rectangle
+        if (bry < 256) {                     // Draw botommost pixels of rectangle
             let x = tlx;
             let location = screenMemAddr + (bry * 32) + tlx;
 
@@ -73,7 +73,7 @@ class Graphics {
             }
         }
 
-        if (tly < 33) {                     // Wipe previous bottommost pixels of rectangle
+        if (tly < 257) {                     // Wipe previous bottommost pixels of rectangle
             let x = tlx;
             let location = screenMemAddr + (tly * 32) + tlx;
 
