@@ -1,0 +1,49 @@
+class Rectangle {
+    field boolean gravity;
+    field boolean move;
+    field int speed;
+
+    field int tlx;
+    field int tly;
+    field int brx;
+    field int bry;
+
+    constructor Rectangle new(int tlx0, int tly0, int brx0, int bry0) {
+        let tlx = tlx0;
+        let tly = tly0;
+        let brx = brx0;
+        let bry = bry0;
+        let move = false;
+        let gravity = false;
+
+        return this;
+    }
+    method void dispose() {
+        do Memory.deAlloc(this);
+        return;
+    }
+    method void move() {
+        let move = true;
+        return;
+    }
+    method void stopMove() {
+        let move = false;
+        return;
+    }
+    method boolean platformTouch(Platform pl) {
+        if ((pl.getTlx() < (brx + 1)) & 
+                (pl.getBrx() > (tlx - 1))) {
+            if (gravity) {
+                if (pl.getBry() = (tly - 1)) {
+                    return true;
+                }
+            } else {
+                if (pl.getTly() = (bry + 1)) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+}
