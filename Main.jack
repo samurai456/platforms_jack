@@ -5,10 +5,10 @@ class Main {
         var Platform pl0, pl1, pl2;
         do LCGRandom.setSeed(47);
 
-        let rect = Rectangle.new(3, 100, 4, 131);
+        let rect = Rectangle.new(3, 200, 4, 231);
         do rect.move();
 
-        do Platform.setInitialX(45);
+        do Platform.setInitialX(34);
         let pl0 = Platform.new(30, 65);
 
         do Platform.setInitialX(pl0.getBrx());
@@ -27,14 +27,19 @@ class Main {
             if (rect.platformTouch(pl0) | 
                     rect.platformTouch(pl1) | 
                     rect.platformTouch(pl2)) {
-                do rect.stopMove();
+                if (Keyboard.keyPressed() = 106) {
+                    do rect.reverseGravity();
+                    do rect.move();
+                } else {
+                    do rect.stopMove();
+                }
             } else {
                 do rect.move();
             }
 
             do rect.update();
 
-            do Sys.wait(5);
+            do Sys.wait(60);
         }
 
         // do Output.moveCursor(6, 10);
