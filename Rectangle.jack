@@ -31,15 +31,17 @@ class Rectangle {
     method boolean platformTouch(Platform pl) {
         if ((pl.getTlx() < (brx + 1)) & 
                 (pl.getBrx() > (tlx - 1))) {
-            if (gravity & (pl.getBry() = (tly - 1))) {
-                return true;
+            if (gravity) {
+                if (pl.getBry() = (tly - 1)) {
+                    return true;
+                }
             } else {
                 if (pl.getTly() = (bry + 1)) {
                     return true;
                 }
             }
         }
-        
+
         return false;
     }
 }
