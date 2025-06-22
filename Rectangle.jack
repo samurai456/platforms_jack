@@ -15,7 +15,7 @@ class Rectangle {
         let bry = bry0;
 
         let move = false;
-        let gravity = true;
+        let gravity = false;
         let speed = 1;
 
         return this;
@@ -30,6 +30,10 @@ class Rectangle {
     }
     method void stopMove() {
         let move = false;
+        return;
+    }
+    method void reverseGravity() {
+        let gravity = ~gravity;
         return;
     }
     method boolean platformTouch(Platform pl) {
