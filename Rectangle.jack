@@ -46,4 +46,21 @@ class Rectangle {
 
         return false;
     }
+    method void update() {
+        if (move) {
+            if (gravity) {
+                let tly = tly + 1;
+                let bry = bry + 1;
+
+                do Graphics.moveRectangleDown(tlx, tly, brx, bry);
+            } else {
+                let tly = tly - 1;
+                let bry = bry - 1;
+
+                do Graphics.moveRectangleUp(tlx, tly, brx, bry);
+            }
+        }
+
+        return;
+    }
 }

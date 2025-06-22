@@ -28,4 +28,10 @@ class Graphics {
 
         return;
     }
+    function void moveRectangleUp(int tlx, int tly, int brx, int bry) {
+        return;
+    }
+    function void moveRectangleDown(int tlx, int tly, int brx, int bry) {
+        return;
+    }
 }
