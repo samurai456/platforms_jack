@@ -44,8 +44,17 @@ class Platform {
 
         return;
     }
+    method int getTlx() {
+        return tlx;
+    }
+    method int getTly() {
+        return tly;
+    }
     method int getBrx() {
         return brx;
+    }
+    method int getBry() {
+        return bry;
     }
     function void setInitialX(int initial) {
         /*Set initial tlx for next platform*/
