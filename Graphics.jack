@@ -58,6 +58,32 @@ class Graphics {
         return;
     }
     function void moveRectangleDown(int tlx, int tly, int brx, int bry) {
+        /* Draws botommost blocks and wipes tly-1 located blocks */
+        var int screenMemAddr, x, location;
+        let screenMemAddr = 16384;          // First 16 pixels of screen
+
+        if (bry < 32) {                     // Draw botommost pixels of rectangle
+            let x = tlx;
+            let location = screenMemAddr + (bry * 32) + tlx;
+
+            while (x < (brx + 1)) {         // x <= brx
+                do Memory.poke(location, -1);
+                let x = x + 1;
+                let location = location + 1;
+            }
+        }
+
+        if (tly < 33) {                     // Wipe previous bottommost pixels of rectangle
+            let x = tlx;
+            let location = screenMemAddr + (tly * 32) + tlx;
+
+            while (x < (brx + 1)) {         // x <= brx
+                do Memory.poke(location - 32, 0);
+                let x = x + 1;
+                let location = location + 1;
+            }
+        }
+
         return;
     }
 }
