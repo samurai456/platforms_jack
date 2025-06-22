@@ -5,7 +5,7 @@ class Main {
         var Platform pl0, pl1, pl2;
         do LCGRandom.setSeed(47);
 
-        let rect = Rectangle.new(3, 200, 4, 231);
+        let rect = Rectangle.new(3, 100, 4, 131);
         do rect.move();
 
         do Platform.setInitialX(45);

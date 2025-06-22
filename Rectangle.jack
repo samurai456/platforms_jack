@@ -15,7 +15,7 @@ class Rectangle {
         let bry = bry0;
 
         let move = false;
-        let gravity = false;
+        let gravity = true;
         let speed = 1;
 
         return this;
