@@ -29,8 +29,31 @@ class Graphics {
         return;
     }
     function void moveRectangleUp(int tlx, int tly, int brx, int bry) {
+        /* Draws topmost blocks and wipes bry+1 located blocks */
         var int screenMemAddr, x, location;
         let screenMemAddr = 16384;          // First 16 pixels of screen
+
+        if (tly > -1) {                     // Draw topmost pixels of rectangle
+            let x = tlx;
+            let location = screenMemAddr + (tly * 32) + tlx;
+
+            while (x < (brx + 1)) {
+                do Memory.poke(location, -1);
+                let x = x + 1;
+                let location = location + 1;
+            }
+        }
+
+        if (bry > -2) {                     // Wipe previous bottommost pixels of rectangle
+            let x = tlx;
+            let location = screenMemAddr + (bry * 32) + tlx;
+
+            while (x < (brx + 1)) {
+                do Memory.poke(location + 32, 0);  // location + 32, becourse wiping previous blocks
+                let x = x + 1;
+                let location = location + 1;
+            }
+        }
 
         return;
     }
