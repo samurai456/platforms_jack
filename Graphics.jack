@@ -78,7 +78,7 @@ class Graphics {
             let location = screenMemAddr + (tly * 32) + tlx;
 
             while (x < (brx + 1)) {         // x <= brx
-                do Memory.poke(location - 32, 0);
+                do Memory.poke(location - 32, 0);     // location - 32, becourse wiping previous blocks
                 let x = x + 1;
                 let location = location + 1;
             }
