@@ -28,4 +28,13 @@ class Graphics {
 
         return;
     }
+    function void moveRectangleUp(int tlx, int tly, int brx, int bry) {
+        var int screenMemAddr, x, location;
+        let screenMemAddr = 16384;          // First 16 pixels of screen
+
+        return;
+    }
+    function void moveRectangleDown(int tlx, int tly, int brx, int bry) {
+        return;
+    }
 }
