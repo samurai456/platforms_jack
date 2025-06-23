@@ -84,7 +84,7 @@ class Graphics {
         let location = firstBlockAddr + (tly * 32) + tlx;
         let finalLocation = firstBlockAddr + (bry * 32) + brx;
 
-        while (location < (finalLocation + 1)) {        // Draw pixels
+        while (location < (finalLocation + 1)) {
             if (location > (firstBlockAddr - 1) & 
                     location < (lastBlockAddr + 1)) {
                 do Memory.poke(location, fillWith);
