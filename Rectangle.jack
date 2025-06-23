@@ -62,6 +62,7 @@ class Rectangle {
                     platformTouch(pl2)) {
                 do stopMove();
             } else {
+                do startMove();
                 if (gravity) {
                     let tly = tly + 1;
                     let bry = bry + 1;
