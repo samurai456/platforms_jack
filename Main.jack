@@ -39,7 +39,7 @@ class Main {
 
             do rect.update();
 
-            do Sys.wait(60);
+            do Sys.wait(200);
         }
 
         // do Output.moveCursor(6, 10);

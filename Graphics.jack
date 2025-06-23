@@ -28,36 +28,19 @@ class Graphics {
 
         return;
     }
-    function void moveRectangleUp(int tlx, int tly, int brx, int bry) {
+    function void moveRectangleUp(int tlx, int tly, int brx, int bry, int rows) {
         /* Draws topmost blocks and wipes bry+1 located blocks */
-        var int screenMemAddr, x, location;
-        let screenMemAddr = 16384;          // First 16 pixels of screen
+        var int y;
 
-        if (tly > -1) {                     // Draw topmost pixels of rectangle
-            let x = tlx;
-            let location = screenMemAddr + (tly * 32) + tlx;
+        let y = tly + rows - 1;
+        do Graphics.drawRectangle(tlx, tly, brx, y, -1);
 
-            while (x < (brx + 1)) {
-                do Memory.poke(location, -1);
-                let x = x + 1;
-                let location = location + 1;
-            }
-        }
-
-        if (bry > -2) {                     // Wipe previous bottommost pixels of rectangle
-            let x = tlx;
-            let location = screenMemAddr + (bry * 32) + tlx;
-
-            while (x < (brx + 1)) {
-                do Memory.poke(location + 32, 0);  // location + 32, becourse wiping previous blocks
-                let x = x + 1;
-                let location = location + 1;
-            }
-        }
+        let y = bry + rows;
+        do Graphics.drawRectangle(tlx, bry + 1, brx, y, 0);
 
         return;
     }
-    function void moveRectangleDown(int tlx, int tly, int brx, int bry) {
+    function void moveRectangleDown(int tlx, int tly, int brx, int bry, int rows) {
         /* Draws botommost blocks and wipes tly-1 located blocks */
         var int screenMemAddr, x, location;
         let screenMemAddr = 16384;          // First 16 pixels of screen
@@ -85,5 +68,60 @@ class Graphics {
         }
 
         return;
+    }
+    function void drawRectangle(int tlx, int tly, int brx, int bry, int fillWith) {
+        var int firstBlockAddr, lastBlockAddr, x, location, finalLocation;
+
+        let tlx = Graphics.withinScreenX(tlx);       // Prevent drawing outside the screen
+        let tly = Graphics.withinScreenY(tly);
+        let brx = Graphics.withinScreenX(brx);
+        let bry = Graphics.withinScreenY(bry);
+
+        let firstBlockAddr = 16384;          // First 16 pixels of screen
+        let lastBlockAddr = 24575;           // Last 16 pixels of screen
+
+        let x = tlx;
+        let location = firstBlockAddr + (tly * 32) + tlx;
+        let finalLocation = firstBlockAddr + (bry * 32) + brx;
+
+        while (location < (finalLocation + 1)) {
+            if (location > (firstBlockAddr - 1) & 
+                    location < (lastBlockAddr + 1)) {
+                do Memory.poke(location, fillWith);
+            }
+            
+            let x = x + 1;
+            
+            if (x > brx) {                              // To the next row
+                let x = tlx;
+                let location = (location + 32) - (brx - tlx); 
+            } else {
+                let location = location + 1;
+            }
+        }
+        
+        return;
+    }
+    function int withinScreenX(int x) {
+        if (x > 31) {
+            return 31;
+        }
+
+        if (x < 0) {
+            return 0;
+        } 
+
+        return x;
+    }
+    function int withinScreenY(int y) {
+        if (y > 255) {
+            return 255;
+        }
+
+        if (y < 0) {
+            return 0;
+        } 
+
+        return y;
     }
 }
