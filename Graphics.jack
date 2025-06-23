@@ -28,36 +28,52 @@ class Graphics {
 
         return;
     }
-    function void moveRectangleUp(int tlx, int tly, int brx, int bry) {
+    function void moveRectangleUp(int tlx, int tly, int brx, int bry, int rows) {
         /* Draws topmost blocks and wipes bry+1 located blocks */
-        var int screenMemAddr, x, location;
+        var int screenMemAddr, x, location, finalLocation;
         let screenMemAddr = 16384;          // First 16 pixels of screen
 
-        if (tly > -1) {                     // Draw topmost pixels of rectangle
-            let x = tlx;
-            let location = screenMemAddr + (tly * 32) + tlx;
+        let x = tlx;
+        let location = screenMemAddr + (tly * 32) + tlx;
+        let finalLocation = screenMemAddr + (((rows - 1) + tly) * 32) + brx;
 
-            while (x < (brx + 1)) {
+        while (location < (finalLocation + 1)) {        // Draw pixels
+            if (location > (screenMemAddr - 1)) {
                 do Memory.poke(location, -1);
-                let x = x + 1;
+            }
+            
+            let x = x + 1;
+            
+            if (x > brx) {                              // To the next row
+                let x = tlx;
+                let location = (location + 32) - (brx - tlx); 
+            } else {
                 let location = location + 1;
             }
         }
 
-        if (bry > -2) {                     // Wipe previous bottommost pixels of rectangle
-            let x = tlx;
-            let location = screenMemAddr + (bry * 32) + tlx;
+        let x = tlx;
+        let location = screenMemAddr + ((bry + 1) * 32) + tlx;
+        let finalLocation = screenMemAddr + ((bry + rows) * 32) + brx;
 
-            while (x < (brx + 1)) {
-                do Memory.poke(location + 32, 0);  // location + 32, becourse wiping previous blocks
-                let x = x + 1;
+        while (location < (finalLocation + 1)) {        // Wipe previous pixels
+            if (location > (screenMemAddr - 1)) {
+                do Memory.poke(location, 0);
+            }
+            
+            let x = x + 1;
+            
+            if (x > brx) {                              // To the next row
+                let x = tlx;
+                let location = (location + 32) - (brx - tlx); 
+            } else {
                 let location = location + 1;
             }
         }
 
         return;
     }
-    function void moveRectangleDown(int tlx, int tly, int brx, int bry) {
+    function void moveRectangleDown(int tlx, int tly, int brx, int bry, int rows) {
         /* Draws botommost blocks and wipes tly-1 located blocks */
         var int screenMemAddr, x, location;
         let screenMemAddr = 16384;          // First 16 pixels of screen

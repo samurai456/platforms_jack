@@ -16,7 +16,7 @@ class Rectangle {
 
         let move = false;
         let gravity = false;
-        let speed = 1;
+        let speed = 4;
 
         return this;
     }
@@ -58,12 +58,12 @@ class Rectangle {
                 let tly = tly + speed;
                 let bry = bry + speed;
 
-                do Graphics.moveRectangleDown(tlx, tly, brx, bry);
+                do Graphics.moveRectangleDown(tlx, tly, brx, bry, speed);
             } else {
                 let tly = tly - speed;
                 let bry = bry - speed;
 
-                do Graphics.moveRectangleUp(tlx, tly, brx, bry);
+                do Graphics.moveRectangleUp(tlx, tly, brx, bry, speed);
             }
         }
 
