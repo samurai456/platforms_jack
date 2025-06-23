@@ -42,30 +42,13 @@ class Graphics {
     }
     function void moveRectangleDown(int tlx, int tly, int brx, int bry, int rows) {
         /* Draws botommost blocks and wipes tly-1 located blocks */
-        var int screenMemAddr, x, location;
-        let screenMemAddr = 16384;          // First 16 pixels of screen
+        var int y;
 
-        if (bry < 256) {                     // Draw botommost pixels of rectangle
-            let x = tlx;
-            let location = screenMemAddr + (bry * 32) + tlx;
+        let y = bry - rows + 1;
+        do Graphics.drawRectangle(tlx, y, brx, bry, -1);
 
-            while (x < (brx + 1)) {         // x <= brx
-                do Memory.poke(location, -1);
-                let x = x + 1;
-                let location = location + 1;
-            }
-        }
-
-        if (tly < 257) {                     // Wipe previous bottommost pixels of rectangle
-            let x = tlx;
-            let location = screenMemAddr + (tly * 32) + tlx;
-
-            while (x < (brx + 1)) {         // x <= brx
-                do Memory.poke(location - 32, 0);     // location - 32, becourse wiping previous blocks
-                let x = x + 1;
-                let location = location + 1;
-            }
-        }
+        let y = tly - rows;
+        do Graphics.drawRectangle(tlx, y, brx, tly - 1, 0);
 
         return;
     }
