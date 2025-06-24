@@ -35,6 +35,14 @@ class Platform {
         return;
     }
     method void reset() {
+        do setRandomTly();
+        let tlx = initialX;
+        let brx = LCGRandom.randRange(tlx + 10, tlx + 40);
+        let bry = tly + 3;
+
+        return;
+    }
+    method void setRandomTly() {
         var int r;
         let r = LCGRandom.randRange(0, 3);
         if (r = 0) {
@@ -58,10 +66,7 @@ class Platform {
         }
 
         let tly = LCGRandom.randRange(yLow, yHigh);
-        let tlx = initialX;
-        let brx = LCGRandom.randRange(tlx + 10, tlx + 40);
-        let bry = tly + 3;
-
+        
         return;
     }
     method int getTlx() {
