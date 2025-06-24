@@ -55,7 +55,7 @@ class Rectangle {
     method void update(Platform pl0, Platform pl1, Platform pl2) {
         var int i, rows;
         let i = 0;
-        let rows = 0;                   // How many rows should be updated is the screen
+        let rows = 0;                   // How many rows should be updated in the screen
         while (i < speed) {
             if (platformTouch(pl0) | 
                     platformTouch(pl1) | 
