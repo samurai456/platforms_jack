@@ -24,7 +24,7 @@ class Rectangle {
         do Memory.deAlloc(this);
         return;
     }
-    method void move() {
+    method void startMove() {
         let move = true;
         return;
     }
@@ -52,19 +52,40 @@ class Rectangle {
 
         return false;
     }
-    method void update() {
-        if (move) {
-            if (gravity) {
-                let tly = tly + speed;
-                let bry = bry + speed;
-
-                do Graphics.moveRectangleDown(tlx, tly, brx, bry, speed);
+    method void update(Platform pl0, Platform pl1, Platform pl2) {
+        var int i, rows;
+        let i = 0;
+        let rows = 0;                   // How many rows should be updated in the screen
+        while (i < speed) {
+            if (platformTouch(pl0) | 
+                    platformTouch(pl1) | 
+                    platformTouch(pl2)) {
+                do stopMove();
             } else {
-                let tly = tly - speed;
-                let bry = bry - speed;
+                do startMove();
+                if (gravity) {
+                    let tly = tly + 1;
+                    let bry = bry + 1;
+                } else {
+                    let tly = tly - 1;
+                    let bry = bry - 1;
+                }
 
-                do Graphics.moveRectangleUp(tlx, tly, brx, bry, speed);
+                let rows = rows + 1;
             }
+
+            let i = i + 1;
+        }
+
+        if (gravity) {
+            do Graphics.moveRectangleDown(tlx, tly, brx, bry, rows);
+        } else {
+            do Graphics.moveRectangleUp(tlx, tly, brx, bry, rows);
+        }
+
+        if (~move & Keyboard.keyPressed() = 106) {
+            do reverseGravity();
+            do startMove();
         }
 
         return;
