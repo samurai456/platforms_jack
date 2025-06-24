@@ -9,10 +9,8 @@ class Platform {
     field int yLow;
     field int speed;
 
-    constructor Platform new(int low, int high) {       // May be we can name arguments
-        let speed = 1;                                  // xLow and xHigh without 
-        let yLow = low;                                 // conflicting with instance 
-        let yHigh = high;                               // fields, but i'm not sure.
+    constructor Platform new() {
+        let speed = 1;
 
         do reset();
         
@@ -37,6 +35,28 @@ class Platform {
         return;
     }
     method void reset() {
+        var int r;
+        let r = LCGRandom.randRange(0, 3);
+        if (r = 0) {
+            let yLow = 20;
+            let yHigh = 44;
+        }
+
+        if (r = 1) {
+            let yLow = 84;
+            let yHigh = 108;
+        }
+
+        if (r = 2) {
+            let yLow = 148;
+            let yHigh = 172;
+        }
+
+        if (r = 3) {
+            let yLow = 212;
+            let yHigh = 236;
+        }
+
         let tly = LCGRandom.randRange(yLow, yHigh);
         let tlx = initialX;
         let brx = LCGRandom.randRange(tlx + 10, tlx + 40);

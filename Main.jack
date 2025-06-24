@@ -9,13 +9,13 @@ class Main {
         do rect.startMove();
 
         do Platform.setInitialX(18);
-        let pl0 = Platform.new(30, 65);
+        let pl0 = Platform.new();
 
         do Platform.setInitialX(pl0.getBrx());
-        let pl1 = Platform.new(105, 150);
+        let pl1 = Platform.new();
 
         do Platform.setInitialX(pl1.getBrx());
-        let pl2 = Platform.new(190, 225);
+        let pl2 = Platform.new();
 
         while (true) {
             do pl0.update();
